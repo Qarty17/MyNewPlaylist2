@@ -8,6 +8,7 @@ import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import java.net.URL
+import androidx.core.net.toUri
 
 class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +33,7 @@ class SettingsActivity : AppCompatActivity() {
             val subject="Сообщение разработчикам и разработчицам приложения Playlist Maker"
             val message="Спасибо разработчикам и разработчицам за крутое приложение!"
             val supportIntent=Intent(Intent.ACTION_SENDTO)
-            supportIntent.data=Uri.parse("mailto:")
+            supportIntent.data= "mailto:".toUri()
             supportIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf("yourEmail@ya.ru"))
             supportIntent.putExtra(Intent.EXTRA_SUBJECT,subject)
             supportIntent.putExtra(Intent.EXTRA_TEXT,message)
@@ -41,7 +42,7 @@ class SettingsActivity : AppCompatActivity() {
 
         val userAgreement=findViewById<Button>(R.id.agreement)
         userAgreement.setOnClickListener{
-            val url= Uri.parse("https://yandex.ru/legal/practicum_offer/")
+            val url= "https://yandex.ru/legal/practicum_offer/".toUri()
             val agreementIntent=Intent(Intent.ACTION_VIEW,url)
 
             startActivity(agreementIntent)
